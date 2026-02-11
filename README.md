@@ -33,5 +33,13 @@ Além disso, adotou-se uma estratégia básica de branches, separando a versão 
 
 Ao final dessa etapa, o projeto encontrava-se devidamente versionado, documentado e preparado para o desenvolvimento colaborativo e acadêmico, garantindo rastreabilidade, organização e boas práticas de engenharia de software.
 
+Desenho e Implementação da Arquitetura do Sistema de Avaliação Automatizada
+
+Nesta etapa, foi projetada e implementada a arquitetura de um sistema automatizado para reconhecimento e avaliação de texto manuscrito. O sistema foi estruturado de forma modular, utilizando a linguagem Python, com o objetivo de integrar processamento de imagens, reconhecimento de texto e avaliação de desempenho.
+
+A arquitetura foi organizada em um pipeline composto por etapas de pré-processamento de imagens, reconhecimento de texto manuscrito por meio de um modelo baseado em deep learning (TrOCR) e avaliação automatizada dos resultados utilizando métricas CER e WER. O pré-processamento foi realizado com a biblioteca OpenCV, visando melhorar a qualidade das imagens de entrada.
+
+A implementação resultou em um pipeline funcional, capaz de receber imagens manuscritas, gerar automaticamente o texto reconhecido e avaliar a qualidade do reconhecimento de forma quantitativa. Essa etapa validou a arquitetura proposta e estabeleceu a base técnica para evoluções futuras do sistema.
+
 
 
