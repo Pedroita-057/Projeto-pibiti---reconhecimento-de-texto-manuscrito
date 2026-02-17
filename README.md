@@ -31,7 +31,7 @@ Foi definida uma estrutura inicial de diretórios, organizada para separar dados
 
 Além disso, adotou-se uma estratégia básica de branches, separando a versão estável do código das versões em desenvolvimento, o que contribui para maior controle e qualidade do projeto, mesmo em um cenário com poucos colaboradores. O uso de issues foi definido como mecanismo de planejamento, registro de atividades e acompanhamento da evolução do sistema.
 
-Ao final dessa etapa, o projeto encontrava-se devidamente versionado, documentado e preparado para o desenvolvimento colaborativo e acadêmico, garantindo rastreabilidade, organização e boas práticas de engenharia de software.
+Ao final dessa etapa, o projeto encontrava-se devidamente versionado, documentado e preparado para o desenvolvimento colaborativo e acadêmico, garantindo rastreabilidade e organização.
 
 Desenho e Implementação da Arquitetura do Sistema de Avaliação Automatizada
 
