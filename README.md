@@ -1,17 +1,14 @@
 
 # Reconhecimento de Texto Manuscrito (PIBITI)
 
-Sistema de reconhecimento de texto manuscrito (HTR) em português brasileiro, desenvolvido como parte do plano de trabalho de Iniciação em Desenvolvimento Tecnológico e Inovação (PIBITI), integrado ao projeto principal de avaliação automatizada de coerência e coesão textual em atividades escritas de estudantes.
+Sistema de reconhecimento de texto manuscrito (HTR) em português brasileiro, desenvolvido como parte do plano de trabalho de Iniciação em Desenvolvimento Tecnológico e Inovação (PIBITI). Algoritmos Inteligentes para Avaliação de Coerência e Coesão Textual em Atividades Escritas de Estudantes
 
-## Sobre o Projeto
 
 ### Contexto e Justificativa
 
 A avaliação de coerência e coesão textual costuma ser feita manualmente, o que torna o processo lento, subjetivo e difícil de aplicar em grande escala. Para que algoritmos inteligentes consigam analisar esses aspectos do texto, é necessário primeiro que as produções escritas estejam digitalizadas com boa precisão — e é aí que entra este projeto.
 
-Diferente do OCR tradicional (eficaz para textos impressos), o reconhecimento de **manuscritos** é mais desafiador, especialmente em português brasileiro, devido à grande variação de caligrafia, à escrita cursiva e a particularidades regionais. Modelos de deep learning (como CNNs e RNNs) vêm avançando bastante nessa área, mas ainda há poucos datasets e soluções otimizadas especificamente para o português.
-
-Este sistema atua como uma etapa habilitadora dentro do projeto maior: ele recebe imagens de atividades manuscritas de estudantes e as converte em texto digital de alta fidelidade, servindo de base para que os módulos de avaliação de coerência e coesão possam operar sem ruídos que comprometeriam a análise linguística.
+O objetivo deste sistema, é atuar no reconhecimento de texto manuscrito, ele recebe imagens de atividades manuscritas de estudantes e as converte em texto digital de alta fidelidade, servindo de base para que os módulos de avaliação de coerência e coesão possam operar sem ruídos que comprometeriam a análise linguística.
 
 ### Objetivo Geral
 
@@ -26,11 +23,8 @@ Desenvolver e otimizar algoritmos de reconhecimento de texto manuscrito em portu
 - Avaliação sistemática de desempenho usando métricas como CER (Character Error Rate) e WER (Word Error Rate).
 - Estruturação da saída do sistema em formato adequado para consumo pelo módulo de avaliação de coerência e coesão.
 
-### Impacto Esperado
 
-Além de viabilizar a análise automatizada de coerência e coesão, a digitalização precisa de atividades manuscritas contribui para a preservação de acervos educacionais, otimiza o tempo de professores na correção de atividades, favorece a inclusão digital (ex: conversão para leitores de tela) e ajuda a preencher a lacuna de pesquisas e datasets voltados ao português brasileiro nessa área.
-
-## Estrutura do Projeto
+## Estrutura de pastas do Projeto
 
 ```
 Projeto-PIBITI---Reconhecimento-de-Texto-Manuscrito/
@@ -66,123 +60,38 @@ Projeto-PIBITI---Reconhecimento-de-Texto-Manuscrito/
 
 ### Descrição dos módulos principais
 
-| Módulo | Responsabilidade |
-|---|---|
-| `preprocessing/image_preprocessing.py` | Binarização, normalização e remoção de ruído das imagens manuscritas antes do reconhecimento |
-| `model/htr_model.py` | Carrega o modelo de reconhecimento de texto manuscrito (TrOCR, Hugging Face) e realiza a predição do texto a partir da imagem |
-| `evaluation/metrics.py` | Calcula as métricas de avaliação de desempenho — Character Error Rate (CER) e Word Error Rate (WER) — comparando o texto reconhecido com o texto de referência |
-| `pipeline.py` | Script que integra pré-processamento, reconhecimento e avaliação em um fluxo único, via linha de comando |
-| `app.py` | Interface web (Streamlit) que permite ao usuário enviar uma imagem manuscrita e visualizar o texto reconhecido e as métricas de avaliação |
+- `preprocessing/image_preprocessing.py`: binariza a imagem e remove ruído antes do reconhecimento.
+- `model/htr_model.py`: carrega o modelo TrOCR (Hugging Face) e reconhece o texto da imagem.
+- `evaluation/metrics.py`: calcula CER e WER comparando o texto reconhecido com o texto de referência.
+- `pipeline.py`: roda o fluxo completo (pré-processamento, reconhecimento e avaliação) via terminal.
+- `app.py`: interface web em Streamlit para upload de imagem e visualização do resultado.
 
-> ⚠️ **Nota:** as pastas `venv/`, `Include/`, `__pycache__/` são geradas automaticamente pelo ambiente Python e não fazem parte do código-fonte propriamente dito — normalmente ficam listadas no `.gitignore` e não são versionadas no repositório.
+As pastas `venv/`, `Include/` e `__pycache__/` são geradas automaticamente pelo Python e não fazem parte do código-fonte.
 
----
+## Como Rodar o Projeto
 
-## Guia Rápido: Como Rodar o Projeto
-
-Passo a passo completo, do zero, para colocar o sistema em execução:
-
-### 1. Ativar o ambiente virtual
-
-Na raiz do projeto, abra o terminal e rode:
-
-**Windows (PowerShell):**
-```powershell
+Ativar o ambiente virtual (Windows):
+```bash
 .\venv\Scripts\Activate.ps1
 ```
 
-Se der erro de permissão:
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Você vai saber que funcionou quando aparecer `(venv)` no início da linha do terminal.
-
-### 2. Instalar as dependências (só na primeira vez, ou se algo mudou)
-
+Instalar as dependências:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Escolher como rodar
-
-**Opção A — Interface web (recomendado para uso geral):**
-
-Rode a partir da **raiz do projeto**:
+Rodar pela interface web:
 ```bash
 streamlit run app.py
 ```
-Isso abre uma aba no navegador (`http://localhost:8501`) onde você sobe uma imagem manuscrita e vê o resultado na hora.
 
-**Opção B — Linha de comando (para testes rápidos com uma imagem fixa):**
-
-Entre na pasta `src` primeiro:
+Ou rodar direto pelo terminal (dentro da pasta `src`):
 ```bash
 cd src
 python pipeline.py
 ```
-Isso processa a imagem definida em `data/raw/exemplo.png` e imprime o resultado direto no terminal.
 
-### Resumo dos comandos (interface web)
-
-```bash
-.\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-### Resumo dos comandos (linha de comando)
-
-```bash
-.\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-cd src
-python pipeline.py
-```
-
-## Instalação e Configuração do Ambiente
-
-### Pré-requisitos
-
-- Python 3.13
-- Git (opcional, para clonar o repositório)
-
-### 1. Criar e ativar o ambiente virtual
-
-```bash
-python -m venv venv
-```
-
-**Windows (PowerShell):**
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-Se aparecer erro de permissão, rode antes:
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-### 2. Instalar as dependências
-
-```bash
-pip install -r requirements.txt
-```
-
-> ⚠️ **Nota sobre compatibilidade (Python 3.13):** as bibliotecas `tokenizers` e `transformers` precisam ser instaladas em versões específicas para evitar erros de build no Python 3.13 (o pacote `tokenizers` só tem binários pré-compilados para essa versão do Python a partir da release 0.20.3). As versões testadas e funcionais neste projeto são:
-> ```
-> tokenizers==0.21.4
-> transformers==4.46.3
-> ```
-> Instale o `tokenizers` **antes** do `transformers`, nessa ordem, para evitar que o pip substitua a versão automaticamente.
-
-### 3. Preparar os dados de entrada
-
-Crie (se ainda não existirem) as subpastas de dados e adicione uma imagem manuscrita de teste:
-
-```
-data/raw/exemplo.png            # imagem manuscrita a ser reconhecida
-data/annotations/exemplo.txt    # texto real correspondente (Ground Truth)
-```
+Observação: o projeto usa `tokenizers==0.21.4` e `transformers==4.46.3`, versões compatíveis com Python 3.13.
 
 ## Arquitetura do Sistema
 
@@ -209,7 +118,6 @@ Avaliação (CER / WER) e exibição do resultado
 
 Cada etapa é implementada como um módulo independente dentro de `src/`, o que permite testar, ajustar ou substituir cada parte do pipeline isoladamente (por exemplo, trocar o modelo de HTR sem alterar o pré-processamento).
 
-> **Observação técnica:** o modelo atual (`trocr-base-handwritten`) foi treinado em inglês (dataset IAM). Por isso, o desempenho em manuscritos de português brasileiro serve como *baseline* inicial do projeto — resultados de CER/WER altos nessa fase são esperados e servem como ponto de partida para a etapa de adaptação/ajuste do modelo ao português.
 
 ## Como Usar
 
