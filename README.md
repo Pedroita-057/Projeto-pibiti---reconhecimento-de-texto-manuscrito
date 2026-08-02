@@ -87,4 +87,22 @@ Com o sistema já publicado, testei de novo o reconhecimento de texto e os resul
 - Estudar como adaptar o modelo para reconhecer melhor o português.
 - Continuar os testes de usabilidade da interface com mais pessoas.
 
+
+## Monitoramento e manutenção
+
+Depois que o sistema ficou publicado, passei a testar o link periodicamente para conferir se continua funcionando (o Streamlit Cloud às vezes "hiberna" apps gratuitos que ficam muito tempo sem acesso, precisando ser reiniciados manualmente).
+
+Também adicionei um registro simples de erros no `app.py`, usando a biblioteca `logging` do Python. Assim, se alguma imagem der erro ao ser processada, isso fica registrado nos logs do Streamlit Cloud, e o usuário vê uma mensagem de erro mais clara na tela, em vez do app simplesmente travar.
+
+Problemas encontrados depois da implantação:
+
+| Data | Problema | O que foi feito |
+|---|---|---|
+| — | — | — |
+
+(tabela para ir preenchendo conforme surgirem novos problemas)
+
+De tempos em tempos pretendo também checar se alguma biblioteca do `requirements.txt` precisa ser atualizada, principalmente por questões de segurança.
+
+
 parei no monitoramento
