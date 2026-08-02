@@ -15,8 +15,12 @@ def recognize_text(image_path):
         images=image, return_tensors="pt"
     ).pixel_values
 
-    generated_ids = model.generate(pixel_values, max_new_tokens=128)
-
+    generated_ids = model.generate(
+    pixel_values,
+    max_new_tokens=128,
+    repetition_penalty=2.5,
+    no_repeat_ngram_size=3
+)
     text = processor.batch_decode(
         generated_ids, skip_special_tokens=True
     )[0]
