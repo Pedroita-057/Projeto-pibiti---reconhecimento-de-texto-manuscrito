@@ -1,4 +1,5 @@
 # Aqui são todas as importações
+import os
 
 # aqui é o redimenensionamento, normalização, remoção de ruído da iamgem.
 from preprocessing.image_preprocessing import preprocess_image
@@ -10,10 +11,13 @@ from model.htr_model import recognize_text
 from evaluation.metrics import evaluate
 
 
+# Diretório raiz do projeto (independente de onde o script é chamado)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # sobe de src/ para a raiz
+
 #os caminhos para os arquivos de entrada e saída
-raw_image = "data/raw/exemplo.png"
-processed_image = "data/processed/exemplo.png"
-reference_text_path = "data/annotations/exemplo.txt"
+raw_image = os.path.join(BASE_DIR, "data", "raw", "exemplo.png")
+processed_image = os.path.join(BASE_DIR, "data", "processed", "exemplo.png")
+reference_text_path = os.path.join(BASE_DIR, "data", "annotations", "exemplo.txt")
 
 # Pré-processamento
 preprocess_image(raw_image, processed_image)
