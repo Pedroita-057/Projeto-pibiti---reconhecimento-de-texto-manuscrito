@@ -65,9 +65,26 @@ No segundo teste, percebi um problema diferente: o modelo ficou repetindo a mesm
 
 De modo geral, os resultados ainda não ficaram bons, mas isso já era esperado: o modelo usado foi treinado com textos em inglês, não em português, então ele erra bastante ao tentar ler manuscritos em português. Esse é o ponto de partida do projeto — a próxima etapa é justamente tentar melhorar esse reconhecimento para o nosso idioma.
 
+## Implantação em ambiente de produção
+
+Depois dos testes locais, coloquei o sistema no ar de verdade, usando o Streamlit Community Cloud (é gratuito e funciona direto com o código do GitHub, sem precisar reescrever nada).
+
+Os passos que segui, resumindo:
+
+Subi o projeto para um repositório no GitHub.
+Criei uma conta no Streamlit Cloud e conectei ao repositório, apontando para o app.py.
+Na primeira tentativa, o deploy deu erro. Fui corrigindo um por um, conforme os logs mostravam:
+o opencv-python não funciona no ambiente da nuvem, precisei trocar para opencv-python-headless;
+o arquivo requirements.txt, gerado automaticamente no meu computador, tinha versões de biblioteca que não existiam ou conflitavam entre si (numpy, huggingface_hub, tokenizers). Fui ajustando as versões até o pip conseguir instalar tudo sem conflito.
+Depois de resolver as instalações, o app subiu e ficou acessível por um link público.
+
+Com o sistema já publicado, testei de novo o reconhecimento de texto e os resultados continuaram fracos, do mesmo jeito que nos testes locais — o que reforça que o problema não é do ambiente, e sim do modelo em si, que não foi treinado em português.
+
 ## Próximos passos
 
 - Testar mais imagens, com textos diferentes, para ter uma ideia melhor da taxa de erro.
 - Ver se ajuda tirar a binarização da imagem antes de mandar pro modelo.
 - Estudar como adaptar o modelo para reconhecer melhor o português.
 - Continuar os testes de usabilidade da interface com mais pessoas.
+
+parei no monitoramento
